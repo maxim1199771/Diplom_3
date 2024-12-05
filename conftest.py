@@ -7,6 +7,7 @@ from page_objects.home_page import HomePage
 from page_objects.list_order_page import ListOrderPage
 from page_objects.password_recovery_page import PasswordRecoveryPage
 from page_objects.private_office_page import PrivateOfficePage
+from urls import Url
 
 
 @pytest.fixture(scope="function", params=["chrome", "firefox"])
@@ -17,7 +18,7 @@ def driver(request):
         web_driver = webdriver.Firefox()
     else:
         raise ValueError(f"Unsupported browser: {request.param}")
-    web_driver.get("https://stellarburgers.nomoreparties.site/")
+    web_driver.get(Url.MAIN_PAGE)
 
     yield web_driver
     web_driver.quit()
